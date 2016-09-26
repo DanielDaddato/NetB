@@ -4,15 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace NetB.Repositorios
 {
     public class UsuariosRepositorio
-    {
-        private readonly NetBContext _netBContext = new NetBContext();
-        public IEnumerable<Usuarios> Usuarios
+    { 
+        public async Task<IEnumerable<Usuarios>> PegarUsuarios()
         {
-            get { return _netBContext.Usuarios; }
+            using (NetBContext netBContext = new NetBContext())
+            {
+                
+                var usuarios = netBContext.Usuarios.Include("departamentos").Include("permissoes");
+              return await usuarios.ToListAsync();
+            };
+        }
+
+        public async Task<Usuarios> PegarUsuario(string login)
+        {
+            using (NetBContext netBContext = new NetBContext())
+            {
+                return await netBContext.Usuarios.Include("departamentos").Include("permissoes").Where(x => x.email == login).Select(x => x).FirstOrDefaultAsync();
+            };
         }
     }
+        
 }

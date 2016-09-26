@@ -9,10 +9,9 @@ namespace NetB.Models.Entidades
 {
     public class Log
     {
-        public int Id { get; set; }
-        [ForeignKey("Id")]
-        public Usuarios Usuarios_Id { get; set; }
-        public DateTime Login { get; set; }
-        public DateTime Logout { get; set; }
+        public int id { get; set; }
+        public Usuarios usuarios_id { get; set; }
+        public DateTime login { get; set; }
+        public DateTime logout { get; set; }
     }
 }

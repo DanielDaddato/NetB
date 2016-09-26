@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace NetB.Models.Entidades
 {
-    public class ProjetosUsuarios
+    public class Projetos_Has_Usuarios
     {
-        [ForeignKey("Id")]
-        public Projetos Projetos_Id { get; set; }
-        [ForeignKey("Id")]
-        public Usuarios Usuarios_Id { get; set; }
+        public int id { get; set; }
+        public int projetos_id { get; set; }
+        public int usuarios_id { get; set; }
     }
 }

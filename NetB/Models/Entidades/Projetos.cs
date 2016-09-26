@@ -9,16 +9,15 @@ namespace NetB.Models.Entidades
 {
     public class Projetos
     {
-        public int Id { get; set; }
-        [ForeignKey("Id")]
-        public Clientes Clientes_Id { get; set; }
-        public string Nome { get; set; }
-        public int Endereco { get; set; }
-        public int Inicio { get; set; }
-        public int Previsão { get; set; }
-        public int Conclusao { get; set; }
-        public int Preco { get; set; }
-        public int Observacoes { get; set; }
-        public bool Status { get; set; }
+        public int id { get; set; }
+        public int clientes_id { get; set; }
+        public string nome { get; set; }
+        public int endereco { get; set; }
+        public int inicio { get; set; }
+        public int previsao { get; set; }
+        public int conclusao { get; set; }
+        public int preco { get; set; }
+        public int observacoes { get; set; }
+        public bool status { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace NetB.Models.Entidades
     public class Departamentos
     {
         public int id { get; set; }
-        public string Nome { get; set; }
+        public string nome { get; set; }
     }
 }
