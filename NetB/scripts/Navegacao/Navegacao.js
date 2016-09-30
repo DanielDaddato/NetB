@@ -26,3 +26,11 @@ function NavegacaoMacroCallback(data)
     var container = $('.container').html(data);
 }
 
+function NavegacaoCalendario() {
+    updatePanelGet('Calendario/Index', NavegacaoCalendarioCallback);
+}
+
+function NavegacaoCalendarioCallback(data) {
+    var container = $('.container').html(data);
+}
+

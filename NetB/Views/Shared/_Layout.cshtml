@@ -6,6 +6,8 @@
     <title>@ViewBag.Title - Net.B</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="~/Content/calendario/calendar.css">
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/jquery-3.1.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -16,14 +18,19 @@
 </head>
 <body>
     <div class="nav navbar-inverse">
-        <img src="#" width="50" height="50" class="img-circle navbar-brand" />
-        <a class="navbar-brand" href="#">Net.B</a>
+        <img src="~/Content/images/Netb/netb.jpg" style="height:75px; width:75px;" class="img-rounded navbar-brand" />
+        <a class="navbar-brand" style="font-size:50px; margin-top: 14px;" href="#">Net.B</a>
     </div>
     <div class="row panel">
-        <div class="nav navbar-left col-xs-3">
-            <a href="javascript:void(0);" onclick="NavegacaoMacro();">Tabela Macro</a>
+        <div class="nav navbar-left col-xs-2">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="button"><a href="javascript:void(0);" style="font: bold 15px verdana; color:white; background-color:#222222;" onclick="NavegacaoMacro();">Tabela Macro</a></li>
+                <li role="button"><a href="javascript:void(0);" style="font: bold 15px verdana; color:white; background-color:#222222;" onclick="NavegacaoCalendario();">Calendario</a></li>
+                <li role="button"><a href="#" style="font: bold 15px verdana; color:white; background-color:#222222;">Tarefas Por Projeto</a></li>
+                <li role="button"><a href="#" style="font: bold 15px verdana; color:white; background-color:#222222;">Gráficos</a></li>    
+            </ul>
         </div>
-        <div class="col-xs-8 container">
+        <div class="col-xs-10 container">
             @RenderBody()
         </div>
     </div>
