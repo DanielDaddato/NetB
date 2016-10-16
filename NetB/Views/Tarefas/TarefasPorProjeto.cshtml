@@ -1,0 +1,26 @@
+﻿@using System.Collections.Generic
+@using NetB.Models.Entidades
+@model IEnumerable<Projetos>
+@{
+    Layout = null;
+}
+
+<div>
+    <select id="select" class="form-control" onchange="BuscaTarefas();">
+        <option value="0">Selecione</option>
+        @foreach (var item in Model)
+        {
+            <option value="@item.id">@item.nome</option>
+        }
+    </select>
+    <table id="tabela" class="table table-striped table-bordered">
+        <tr>
+            <th>Tarefa</th>
+            <th>Projeto</th>
+            <th>Previsão</th>
+            <th>Observações</th>
+        </tr>
+        <tbody id="tabelaBody">
+        </tbody>
+    </table>
+</div>

@@ -16,7 +16,6 @@ namespace NetB.Controllers
         // GET: Login
         public async Task<ActionResult> Index()
         {
-
                 return View();           
         }
 

@@ -1,8 +1,12 @@
-﻿using NetB.Models;
+﻿using NetB.Infraestrutura;
+using NetB.Models;
+using NetB.Models.DTO;
+using NetB.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,25 +15,37 @@ namespace NetB.Controllers
     public class CalendarioController : Controller
     {
         // GET: Calendario
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var responsavel = await new  ResponsavelRepositorio().BuscaResponsaveis();
+            return View(responsavel);
         }
 
-        public JsonResult Eventos()
+        public async Task<JsonResult> Eventos()
         {
-            List<evento> eventos = new List<evento>();
-            eventos.Add(new evento
+            var eventos = await new CalendarioInfra().BuscaEventos();
+            return Json(eventos,JsonRequestBehavior.AllowGet);
+        }
+        
+        public async Task<JsonResult> BuscaTarefaDetalhes(int id)
+        {
+            var evento = await new TarefasRepositorio().BuscaTarefaDetalhe(id);
+            return Json(evento, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> GravaTarefaDetalhe(TarefaCalendarioDTO tarefa)
+        {
+            try
             {
-                id = 293,
-                title = "This is warning class event with very long title to check how it fits to evet in day view",
-                url = "http://www.example.com/",
-                classe = "event-warning",
-                start = "1362938400000",
-                end = "1363197686300"
-            });
-            var retorno = new { success = 1, result = eventos };
-            return Json(retorno,JsonRequestBehavior.AllowGet);
+                var retorno = await new CalendarioInfra().AtualizaTarefa(tarefa);
+                return Json(retorno, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+                return null;
+            }
         }
     }
 }

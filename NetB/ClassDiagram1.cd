@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NetB.RouteConfig" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.WebApiConfig" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\WebApiConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.MvcApplication" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Controllers.CalendarioController" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CalendarioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Controllers.HomeController" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Controllers.LoginController" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\LoginController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Controllers.TarefasController" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TarefasController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Infraestrutura.LoginInfra" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infraestrutura\LoginInfra.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Infraestrutura.TarefasInfra" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infraestrutura\TarefasInfra.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.DTO.LoginDTO" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DTO\LoginDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.DTO.TarefasDTO" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAgAAAAAAAAABAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DTO\TarefasDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.DTO.TarefasUsuariosDTO" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAgAAAAAAAAABAEAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DTO\TarefasUsuarioDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.Entidades.Clientes" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwQAAAAAAAAACKAgAAAAAAAAAAAAAAAAAAAQAAAAAgA=</HashCode>
+      <FileName>Models\Entidades\Clientes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.Entidades.Departamentos" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Entidades\Departamentos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.Entidades.Log" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAEgA=</HashCode>
+      <FileName>Models\Entidades\Log.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.Entidades.Permissoes" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Entidades\Permissoes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.Entidades.Projetos">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQSAAAAAAAAAAAAQAAAAAAAAAAAAAAQAggAQAAAAAgA=</HashCode>
+      <FileName>Models\Entidades\Projetos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.Entidades.Projetos_Has_Usuarios" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Entidades\Projetos_Has_Usuarios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.Entidades.Tarefas" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQSAAAAAAAAAAAAQAAAAAAAAAAAAQAAAgAAAAAAAAgA=</HashCode>
+      <FileName>Models\Entidades\Tarefas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.Entidades.Tarefas_Has_Usuarios" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Models\Entidades\Tarefas_Has_Usuarios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.Entidades.Usuarios" Collapsed="true">
+    <Position X="4.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAEAAAAAAAAAiAAAAIAAACAAAAAAAAAQAAAAACgA=</HashCode>
+      <FileName>Models\Entidades\Usuarios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Models.evento" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACQAAAAgAgAAAAAAAAAAAIAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\evento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Repositorios.NetBContext" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAIAAAAEAgAAQgAAABAAAAEIgA=</HashCode>
+      <FileName>Repositorios\NetBContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Repositorios.TarefasRepositorio" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Repositorios\TarefasRepositorio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetB.Repositorios.UsuariosRepositorio" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Repositorios\UsuariosRepositorio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

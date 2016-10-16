@@ -15,7 +15,7 @@ namespace NetB.Repositorios
             using (NetBContext netBContext = new NetBContext())
             {
                 
-                var usuarios = netBContext.Usuarios.Include("departamentos").Include("permissoes");
+                var usuarios = netBContext.Usuarios;
               return await usuarios.ToListAsync();
             };
         }
@@ -24,7 +24,7 @@ namespace NetB.Repositorios
         {
             using (NetBContext netBContext = new NetBContext())
             {
-                return await netBContext.Usuarios.Include("departamentos").Include("permissoes").Where(x => x.email == login).Select(x => x).FirstOrDefaultAsync();
+                return await netBContext.Usuarios.Where(x => x.email == login).Select(x => x).FirstOrDefaultAsync();
             };
         }
     }

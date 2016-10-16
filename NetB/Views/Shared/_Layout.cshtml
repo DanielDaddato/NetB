@@ -7,12 +7,20 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="~/Content/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="~/Content/fullcalendar.css" />
     <link rel="stylesheet" href="~/Content/calendario/calendar.css">
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/jquery-3.1.0.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/scripts/dataTables.bootstrap.min.js"></script>
-    <script src="~/scripts/dataTables.bootstrap4.min.js"></script>
+    <script src="~/scripts/modernizr-2.8.3.js"></script>
+    <script src="~/scripts/lib/jquery.min.js"></script>
+    <script src="~/scripts/jquery-3.1.0.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/DataTables-1.10.12/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/scripts/DataTables-1.10.12/media/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/scripts/DataTables-1.10.12/media/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/scripts/Chart.js"></script>
+    <script src="~/scripts/lib/moment.min.js"></script>
+    <script src="~/scripts/lib/jquery-ui.min.js"></script>
+    <script src="~/scripts/fullcalendar.js"></script>
+    <script src='~/scripts/locale/pt-br.js'></script>   
     <script src="~/scripts/Navegacao/UpdatePanel.js"></script>
     <script src="~/scripts/Navegacao/Navegacao.js"></script>
 </head>
@@ -22,12 +30,16 @@
         <a class="navbar-brand" style="font-size:50px; margin-top: 14px;" href="#">Net.B</a>
     </div>
     <div class="row panel">
-        <div class="nav navbar-left col-xs-2">
+        <div class="nav navbar-left col-xs-2" style="font: bold 15px verdana; color:white; background-color:#222222;">
             <ul class="nav nav-pills nav-stacked">
+                <li role="button"><a href="javascript:void(0);" style="font: bold 15px verdana; color:white; background-color:#222222;" onclick="HomeIndex();">Home</a></li>
                 <li role="button"><a href="javascript:void(0);" style="font: bold 15px verdana; color:white; background-color:#222222;" onclick="NavegacaoMacro();">Tabela Macro</a></li>
-                <li role="button"><a href="javascript:void(0);" style="font: bold 15px verdana; color:white; background-color:#222222;" onclick="NavegacaoCalendario();">Calendario</a></li>
-                <li role="button"><a href="#" style="font: bold 15px verdana; color:white; background-color:#222222;">Tarefas Por Projeto</a></li>
-                <li role="button"><a href="#" style="font: bold 15px verdana; color:white; background-color:#222222;">Gráficos</a></li>    
+                <li role="button">@Html.ActionLink("Calendario", "Index", "Calendario",null, new { style = "font: bold 15px verdana; color:white; background-color:#222222;" })</li>
+                <li role="button"><a href="javascript:void(0);" style="font: bold 15px verdana; color:white; background-color:#222222;" onclick="NavegacaoTarefasProjeto();">Tarefas Por Projeto</a></li>
+                <li role="button"><a href="javascript:void(0);" style="font: bold 15px verdana; color:white; background-color:#222222;" onclick="NavegacaoGraficoHoras();">Gráficos De Horas</a></li>
+                <li role="button"><a href="javascript:void(0);" style="font: bold 15px verdana; color:white; background-color:#222222;" onclick="NavegacaoGraficoCusto();">Gráficos De Custos</a></li>
+                <li role="button"><a href="javascript:void(0);" style="font: bold 15px verdana; color:white; background-color:#222222;" onclick="NavegacaoGraficoTarefas();">Gráficos De Tarefas</a></li>
+                <li role="button"><a href="javascript:void(0);" style="font: bold 15px verdana; color:white; background-color:#222222;" onclick="NavegacaoUsuarios();">Usuarios</a></li>
             </ul>
         </div>
         <div class="col-xs-10 container">
@@ -35,7 +47,7 @@
         </div>
     </div>
     <footer class="nav navbar-inverse navbar-fixed-bottom panel-footer">
-        <p>&copy; @DateTime.Now.Year - Net.B 2016</p>
+        <p>&copy; @DateTime.Now.Year - Net.B</p>
     </footer>
 </body>
 </html>

@@ -23,9 +23,8 @@ namespace NetB.Repositorios
 
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Departamentos> Departamentos { get; set; }
-        public DbSet<Permissoes> Permissoes { get; set; }
         public DbSet<Tarefas> Tarefas { get; set; }
-        public DbSet<Tarefas_Has_Usuarios> TarefasUsuarios { get; set; }
+        public DbSet<Responsavel> Responsavel { get; set; }
         public DbSet<Projetos> Projetos { get; set; }
         public DbSet<Projetos_Has_Usuarios> ProjetosUsuarios { get; set; }
         public DbSet<Clientes> Clientes { get; set; }
@@ -38,9 +37,8 @@ namespace NetB.Repositorios
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<Usuarios>().ToTable("usuarios");
             modelBuilder.Entity<Departamentos>().ToTable("departamento");
-            modelBuilder.Entity<Permissoes>().ToTable("permissoes");
+            modelBuilder.Entity<Responsavel>().ToTable("responsavel");
             modelBuilder.Entity<Tarefas>().ToTable("tarefas");
-            modelBuilder.Entity<Tarefas_Has_Usuarios>().ToTable("tarefas_has_usuarios");
             modelBuilder.Entity<Projetos>().ToTable("projetos");
             modelBuilder.Entity<Projetos_Has_Usuarios>().ToTable("projetos_has_usuarios");
             modelBuilder.Entity<Clientes>().ToTable("clientes");

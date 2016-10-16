@@ -8,10 +8,13 @@ namespace NetB.Models.DTO
 {
     public class TarefasDTO
     {
-        public string Tarefa { get; set; }
-        public string Projeto { get; set; }
-        public DateTime Previsao { get; set; }
-        public string Observacoes { get; set; }
-
+        public int id { get; set; }
+        public string projeto { get; set; }
+        public int responsavel_id { get; set; }
+        public string nome { get; set; }
+        public string descricao { get; set; }
+        public string inicio { get; set; }
+        public string previsao { get; set; }
+        public string observacoes { get; set; }
     }
 }

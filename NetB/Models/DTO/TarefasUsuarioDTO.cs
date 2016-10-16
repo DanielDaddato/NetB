@@ -10,7 +10,7 @@ namespace NetB.Models.DTO
     {
         public string Tarefa { get; set; }
         public string Projeto { get; set; }
-        public DateTime Previsao { get; set; }
+        public DateTime? Previsao { get; set; }
         public string Observacoes { get; set; }
         public int UsuarioId { get; set; }
     }
