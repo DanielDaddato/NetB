@@ -131,16 +131,16 @@ function BuscaTarefas() {
 }
 
 function BuscaTarefasCallback(data) {
-
+    $("#tabelaBody").empty();
     var container = $("#tabelaBody");
     data.forEach(function (item) {
         var content = "<tr>" +
             '<td>' + item.nome + '</td>' +
             '<td>' + item.projeto + '</td>' +
-            '<td>' + new Date(item.previsao).getDate() + '</td>' +
+            '<td>' + new Date(item.previsao).toLocaleString() + '</td>' +
             '<td>' + item.observacoes + '</td>' +
         '</tr>'
-        container.html(content);
+        container.append(content);
     });
 
 }

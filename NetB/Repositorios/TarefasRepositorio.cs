@@ -173,6 +173,7 @@ namespace NetB.Repositorios
                         join => join.tarefas.projetos_id,
                         projetos => projetos.id,
                         (join, projetos) => new { join, projetos })
+                        .Where(x => x.join.tarefas.status == true && x.join.tarefas.conclusao == null)
                         .Select(x => new TarefaEvento
                         {
                             id = x.join.tarefas.id,
