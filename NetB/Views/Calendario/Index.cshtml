@@ -2,7 +2,7 @@
 @using NetB.Models.Entidades;
 @model IEnumerable<Responsavel>
 @{
-    //Layout = null;
+    Layout = null;
     ViewBag.Title = "Index";
 }
 <script type="text/javascript">
@@ -22,6 +22,9 @@
                 <input type="hidden" id="numero" />
                 <p id="descricao"></p>
                 <p id="projeto"></p>
+                <label>Justificativa</label>
+                <p><textarea id="justificativa" style="height:100px; width:400px;" ></textarea></p>
+                <label>Responsavel:</label>
                 <p>
                     <select id="responsavel">
                         @foreach (var item in Model)
@@ -30,11 +33,12 @@
                         }
                 </select>
             </p>
-            <p><input type="text" id="datepicker" /></p>
-            <p><input type="submit" onclick="AtualizaTarefa();" class="btn btn-primary" value="Alterar" /></p>
+            <label>Data de Previsão:</label>
+            <p><input type="text" id="datepicker" class="ui-datepicker" /></p>
         </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" onclick="AtualizaTarefa();" class="btn btn-primary" value="Gravar" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
             </div>
         </div>
     </div>
@@ -49,6 +53,13 @@
                 BuscaEventoModal(event.id);
                 $('#calendar').fullCalendar('updateEvent', event);
             },
+            //eventMouseover: function (event, element) {
+            //    element.qtip({
+            //        content: event.descricao,
+            //        content: event.responsavel,
+            //        content: event.projeto
+            //    });
+            //},
         });
     });
 

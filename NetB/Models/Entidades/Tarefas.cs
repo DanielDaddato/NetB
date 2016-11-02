@@ -19,8 +19,10 @@ namespace NetB.Models.Entidades
         public DateTime? previsao { get; set; }
         public DateTime? conclusao { get; set; }
         public string observacoes { get; set; }
-        public int? horas_estimadas { get; set; }
-        public int? horas_trabalhadas { get; set; }
+        public int dias_estimados { get; set; }
+        public int dias_trabalhados { get; set; }
+        public int valor_estimado { get; set; }
+        public int valor_utilizado { get; set; }
         public bool status { get; set; }
     }
 }

@@ -15,15 +15,7 @@ namespace NetB.Repositorios
         {
             using (NetBContext netBContext = new NetBContext())
             {
-                try
-                {
                     return await netBContext.Projetos.ToListAsync();
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex);
-                    return null;
-                }
             }
         }
 

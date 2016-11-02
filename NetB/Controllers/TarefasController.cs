@@ -16,7 +16,7 @@ namespace NetB.Controllers
         public async Task<ActionResult> TarefasPorUsuarios()
         {
             var listaTarefas = await new TarefasInfra().BuscaTarefasPorUsuario();
-
+            
             return View(listaTarefas);
         }
 
@@ -28,8 +28,8 @@ namespace NetB.Controllers
 
         public async Task<JsonResult> BuscaTarefas(int idProjeto)
         {
-            var projetos = await  new TarefasRepositorio().TarefasPorProjeto(idProjeto);
-            return Json(projetos, JsonRequestBehavior.AllowGet);
+            var tarefas = await  new TarefasRepositorio().TarefasPorProjeto(idProjeto);
+            return Json(tarefas, JsonRequestBehavior.AllowGet);
         }
     }
 }

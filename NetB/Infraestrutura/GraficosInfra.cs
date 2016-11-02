@@ -1,4 +1,6 @@
-﻿using NetB.Repositorios;
+﻿using NetB.Models;
+using NetB.Models.Entidades;
+using NetB.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,25 +11,48 @@ namespace NetB.Infraestrutura
 {
     public class GraficosInfra
     {
-        public async Task<List<int?>> BuscaHoras(int idProjeto)
+        public async Task<List<GraficoDataSet>> BuscaHoras(int idProjeto)
         {
-            var horas = new List<int?>();
+            var Lista = new List<List<int?>>();
             var repositorio = new TarefasRepositorio();
-            horas.Add(await repositorio.BuscaHorasEstimadasTarefas(idProjeto));
-            horas.Add(await repositorio.BuscaHorasTrabalhadasTarefas(idProjeto));
+            var horas = await repositorio.BuscaHorasTarefas(idProjeto);
+            for (int i = 0; i < horas.Count; i++)
+            {
+                horas[i].Cor = listaCores[i];
+            }
             return horas;
         }
-
-        public async Task<List<double?>> BuscaCusto(int idProjeto)
+        List<string> listaCores = new List<string>
+        {
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+        };
+        public async Task<List<GraficoDataSet>> BuscaCusto(int idProjeto)
         {
             var valores = new List<double?>();
             var repositorio = new TarefasRepositorio();
-            var valorHora = await new ProjetosRepositorio().BuscaValorProjeto(idProjeto);
-            var valorEstimado = await repositorio.BuscaHorasEstimadasTarefas(idProjeto) * valorHora;
-            valores.Add(valorEstimado);
-            var valorReal = await repositorio.BuscaHorasTrabalhadasTarefas(idProjeto) * valorHora;
-            valores.Add(valorReal);
-            return valores;
+            var custo = await repositorio.BuscaCustoTarefas(idProjeto);
+            for (int i = 0; i < custo.Count; i++)
+            {
+                custo[i].Cor = listaCores[i];
+            }
+            return custo;
         }
 
         public async Task<List<int>> BuscaTarefasProjeto(int idProjeto)
@@ -44,6 +69,38 @@ namespace NetB.Infraestrutura
             return contagemTarefas;
         }
 
+        public async Task<List<GraficoGeralDataset>> BuscaHorasGeral()
+        {
+            var listaDataset = new List<GraficoGeralDataset>();
+            var projetos = await new ProjetosRepositorio().BuscaProjetos();
+            List<List<Tarefas>> projetoTarefas = new List<List<Tarefas>>();
+            var tarefas = await new TarefasRepositorio().BuscarTodasTarefasOrdenadoPorPrevisao();
 
+            foreach (var item in projetos)
+            {
+                projetoTarefas.Add(tarefas.Where(x => x.projetos_id == item.id).OrderBy(x => x.previsao).ToList());
+            }
+           
+            for (int i = 0; i <= 17; i++)
+            {
+                var graficoGeralDataset = new GraficoGeralDataset();
+                foreach (var item in projetoTarefas)
+                {                 
+                    if (item.Count > i)
+                    {
+                        graficoGeralDataset.Estimado.Add(item[i].dias_estimados);
+                        graficoGeralDataset.Realizado.Add(item[i].dias_trabalhados);
+                    }
+                    else
+                    {
+                        graficoGeralDataset.Estimado.Add(0);
+                        graficoGeralDataset.Realizado.Add(0);
+                    }
+                }
+                graficoGeralDataset.Cor = listaCores[i];
+                listaDataset.Add(graficoGeralDataset);
+            }
+            return listaDataset;
+        }
     }
 }

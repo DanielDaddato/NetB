@@ -1,6 +1,6 @@
 ﻿@using System.Collections.Generic
 @using NetB.Models.DTO
-@model Dictionary<string,List<TarefasUsuariosDTO>>
+@model Dictionary<string,List<TarefasResponsavelDTO>>
 @{
     Layout = null;
     ViewBag.Title = "Tarefas Por Usuarios";
@@ -28,7 +28,9 @@ else
                                 <tr>
                                     <th>Tarefa</th>
                                     <th>Projeto</th>
+                                    <th>Inicio</th>
                                     <th>Previsão</th>
+                                    <th>Conclusão</th>
                                     <th>Observações</th>
                                 </tr>
                                 <tbody>
@@ -37,7 +39,9 @@ else
                                         <tr>
                                             <td> @tarefas.Tarefa </td>
                                             <td> @tarefas.Projeto </td>
-                                            <td> @tarefas.Previsao.ToString() </td>
+                                            <td>@tarefas.Inicio</td>
+                                            <td><span style="color:@tarefas.statusCor">@tarefas.Previsao</span></td>
+                                            <td>@tarefas.Conclusao</td>
                                             <td> @tarefas.Observacoes </td>
                                         </tr>
                                     }

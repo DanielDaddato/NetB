@@ -20,7 +20,11 @@ else
         <tr>
             <th>Tarefa</th>
             <th>Projeto</th>
+            <th>Descrição</th>
+            <th>Responsavel</th>
+            <th>Inicio</th>
             <th>Previsão</th>
+            <th>Conclusão</th>
             <th>Observações</th>
         </tr>
         <tbody>
@@ -30,7 +34,11 @@ else
                 <tr>
                     <td>@item.nome</td>
                     <td>@item.projeto</td>
-                    <td>@item.previsao.ToString()</td>
+                    <td>@item.descricao</td>
+                    <td>@item.responsavel_id</td>
+                    <td>@Html.Raw(item.inicio.Value)</td>
+                    <td><span style="color:@item.statusCor">@item.previsao</span></td>
+                    <td>@item.conclusao</td>
                     <td>@item.observacoes</td>
                 </tr>
             }

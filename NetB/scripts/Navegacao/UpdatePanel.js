@@ -7,6 +7,14 @@ function updatePanelGet(url, callBack) {
         success: function (data) { callBack(data); }
     });
 }
+function updatePanelGetnoCallback(url) {
+    $.ajax({
+        type: 'GET',
+        url: url,
+        async: true
+    });
+}
+
 
 function UpdatePainelFunction(pagina, callbackFunction, exibe, async) {
     $.ajax({

@@ -18,5 +18,13 @@ namespace NetB.Repositorios
                 return await netBContext.Responsavel.ToListAsync();
             }
         }
+
+        public async Task<Responsavel> BuscaEmailResponsaveis(int id)
+        {
+            using (NetBContext netBContext = new NetBContext())
+            {
+                return await netBContext.Responsavel.Where(x => x.id == id).Select(x => x).FirstOrDefaultAsync();
+            }
+        }
     }
 }

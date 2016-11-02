@@ -49,6 +49,17 @@ namespace NetB.Controllers
             return Json(horas, JsonRequestBehavior.AllowGet);
         }
 
+        public async Task<ActionResult> HorasGeral()
+        {
+            return View();
+        }
+
+        public async Task<JsonResult> BuscaHorasGeral()
+        {
+            var retorno = await new GraficosInfra().BuscaHorasGeral();
+            return Json(retorno, JsonRequestBehavior.AllowGet);
+        }
+
 
     }
 }

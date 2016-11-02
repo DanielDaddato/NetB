@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetB.Infraestrutura;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,7 @@ namespace NetB
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            new Agendamento().RoboAgendamento();
         }
     }
 }

@@ -29,6 +29,7 @@ namespace NetB.Repositorios
         public DbSet<Projetos_Has_Usuarios> ProjetosUsuarios { get; set; }
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Log> Log { get; set; }
+        public DbSet<Justificativas> Justificativas { get; set; }
 
 
 
@@ -43,6 +44,7 @@ namespace NetB.Repositorios
             modelBuilder.Entity<Projetos_Has_Usuarios>().ToTable("projetos_has_usuarios");
             modelBuilder.Entity<Clientes>().ToTable("clientes");
             modelBuilder.Entity<Log>().ToTable("log");
+            modelBuilder.Entity<Justificativas>().ToTable("justificativas");
 
         }
     }

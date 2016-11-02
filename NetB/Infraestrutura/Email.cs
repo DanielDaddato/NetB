@@ -10,7 +10,7 @@ namespace NetB.Infraestrutura
 {
     public class Email
     {
-        public async Task<bool> EnviarEmail()
+        public async Task<bool> EnviarEmail( string responsavel, List<string> usuarios, string assunto, string Corpo)
         {
             return await Task.Run<bool>(() =>
             {
@@ -23,12 +23,16 @@ namespace NetB.Infraestrutura
                     Smtp.UseDefaultCredentials = false;
                     Smtp.Credentials = new NetworkCredential("tccredes4", "senhatcc");
 
-                    MailAddress email = new MailAddress("tccredes4@gmail.com", "daniel daddato");
+                    MailAddress email = new MailAddress(responsavel);
                     MailMessage mensagem = new MailMessage();
                     mensagem.From = new MailAddress("tccredes4@gmail.com");
                     mensagem.To.Add(email);
-                    mensagem.Subject = "Teste Email netb";
-                    mensagem.Body = "Teste Email netb";
+                    usuarios.ForEach(x =>
+                    {
+                        mensagem.CC.Add(new MailAddress(x));
+                    });
+                    mensagem.Subject = assunto;
+                    mensagem.Body = Corpo;
                     Smtp.Send(mensagem);
                     return true;
                 }

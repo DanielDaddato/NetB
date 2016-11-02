@@ -20,6 +20,25 @@ namespace NetB.Controllers
                 try
                 {
                     var ListaTarefas = await new TarefasRepositorio().TarefasDoUsuario(session.id);
+                    foreach (var item in ListaTarefas)
+                    {
+                        if (item.conclusao != null)
+                        {
+                            item.statusCor = "Green";
+                        }
+                        else if (item.previsao.Value < DateTime.Now)
+                        {
+                            item.statusCor = "Red";
+                        }
+                        else if (item.previsao.Value >= DateTime.Now.AddDays(-5) && item.previsao.Value <= DateTime.Now)
+                        {
+                            item.statusCor = "Yellow";
+                        }
+                        else
+                        {
+                            item.statusCor = "Blue";
+                        }
+                    }
                     return View(ListaTarefas);
                 }
                 catch (Exception ex)

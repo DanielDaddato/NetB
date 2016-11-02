@@ -16,5 +16,6 @@ namespace NetB.Models.DTO
         public string inicio { get; set; }
         public string previsao { get; set; }
         public string observacoes { get; set; }
+        public string justificativa { get; set; }
     }
 }

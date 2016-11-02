@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<NetB.Models.Entidades.Usuarios>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{
+    Layout = null;
+    ViewBag.title = "Usuarios";
+}
 <table class="table">
     <tr>
         <th>Nome</th>
@@ -23,47 +23,56 @@
             {
                 if (d.id == item.departamento_id)
                 {
-                        <td>@d.nome</td>
+                    <td>@d.nome</td>
                 }
             }
-                <td>
-                    @Html.Raw(item.status ? "Ativo" : "Inativo")
-                </td>
-                <td>
-                    <a href="javascript:void(0);" onclick="EditaUsuario(@item.id);">Editar</a>
-                    <a href="javascript:void(0);" onclick="DeletaUsuario(@item.id)">Deletar</a>
-                </td>
-            </tr>
-            }
-    <div class="modal fade" id="basic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h3 id="titulo" class="modal-title"></h3>
-                </div>
-                <div class="modal-body" style="height: 400px">
-                    <input type="hidden" id="numero" />
-                    <p id="descricao"></p>
-                    <p id="projeto"></p>
-                    <p>
-                        <select id="responsavel">
-                            @foreach (var item in ViewBag.Departamento)
-                            {
-                                <option value="@item.id">@item.nome</option>
-                            }
-                        </select>
-                    </p>
-                    <p><input type="text" id="datepicker" /></p>
-                    <p><input type="submit" onclick="AtualizaTarefa();" class="btn btn-primary" value="Alterar" /></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+            <td>
+                @Html.Raw(item.status ? "Ativo" : "Inativo")
+            </td>
+            <td>
+                <a href="javascript:void(0);" class="btn btn-warning" onclick="EditarUsuarioModal(@item.id);">Editar</a>
+                <a href="javascript:void(0);" class="btn btn-danger" onclick="DeletaUsuario(@item.id)">Deletar</a>
+            </td>
+        </tr>
+    }
+</table>
+<div class="modal fade" id="basic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h3 id="titulo" class="modal-title">Cadastro de Usuários</h3>
+            </div>
+            <div class="modal-body" style="height: 400px">
+                <input type="hidden" id="numero" class="form-control" />
+                <label>Nome:</label>
+                <input type="text" class="form-control"  id="nome" />
+                <label>E-mail:</label>
+                <input type="text" class="form-control"  id="email" />
+                <label>Senha:</label>
+                <input type="password" class="form-control"  id="senha" />
+                <label>Departamento:</label>
+                <p>
+                    <select id="departamento" class="form-control" >
+                        @foreach (var item in ViewBag.Departamento)
+                        {
+                            <option value="@item.id">@item.nome</option>
+                        }
+                    </select>
+                </p>
+                
+            </div>
+            <div class="modal-footer">
+                <input type="submit" onclick="GravaUsuario();" class="btn btn-primary" value="Alterar" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
-</table>
+</div>
+<br />
+<p>
+    <a href="javascript:void(0);" class="btn btn-primary" onclick="NovoUsuarioModal();">Adicionar</a>
+</p>
 
 <div class="modal fade" id="basic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -82,12 +91,12 @@
                 <input type="password" id="senha" />
                 <label>Departamento</label>
                 <p>
-                <select id="departamento">
-                    @foreach (var item in ViewBag.Departamento)
-                    {
-                        <option value="@item.id">@item.nome</option>
-                    }
-                </select>
+                    <select id="departamento">
+                        @foreach (var item in ViewBag.Departamento)
+                        {
+                            <option value="@item.id">@item.nome</option>
+                        }
+                    </select>
                 </p>
                 <p><input type="submit" onclick="AtualizaUsuario();" class="btn btn-primary" value="Atualizar" /></p>
             </div>

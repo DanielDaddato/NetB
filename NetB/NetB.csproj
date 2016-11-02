@@ -344,6 +344,8 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -496,6 +498,9 @@
     <Content Include="Content\DataTables-1.10.12\extensions\Buttons\css\mixins.scss" />
     <Content Include="Content\DataTables-1.10.12\extensions\Buttons\css\common.scss" />
     <Content Include="Content\images\Sorting icons.psd" />
+    <Content Include="ClassDiagram2.cd" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Properties\PublishProfiles\daniel.pubxml" />
     <None Include="scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="scripts\DataTables-1.10.12\media\js\dataTables.bootstrap.js" />
@@ -606,8 +611,15 @@
     <Content Include="scripts\locale\zh-cn.js" />
     <Content Include="scripts\locale\zh-tw.js" />
     <Content Include="scripts\modernizr-2.8.3.js" />
+    <Content Include="scripts\Navegacao\Funcoes.js" />
     <Content Include="scripts\Navegacao\Navegacao.js" />
     <Content Include="scripts\Navegacao\UpdatePanel.js" />
+    <Content Include="scripts\qTip\jquery.qtip.css" />
+    <Content Include="scripts\qTip\jquery.qtip.js" />
+    <Content Include="scripts\qTip\jquery.qtip.min.css" />
+    <Content Include="scripts\qTip\jquery.qtip.min.js" />
+    <Content Include="scripts\toastr.js" />
+    <Content Include="scripts\toastr.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -624,6 +636,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infraestrutura\Agendamento.cs" />
     <Compile Include="Infraestrutura\CalendarioInfra.cs" />
     <Compile Include="Infraestrutura\Email.cs" />
     <Compile Include="Infraestrutura\GraficosInfra.cs" />
@@ -631,10 +644,13 @@
     <Compile Include="Infraestrutura\TarefasInfra.cs" />
     <Compile Include="Models\DTO\LoginDTO.cs" />
     <Compile Include="Models\DTO\TarefaCalendarioDTO.cs" />
-    <Compile Include="Models\DTO\TarefasUsuarioDTO.cs" />
+    <Compile Include="Models\DTO\TarefasAgendamentoDTO.cs" />
+    <Compile Include="Models\DTO\TarefasProjetoDTO.cs" />
+    <Compile Include="Models\DTO\TarefasResponsavelDTO.cs" />
     <Compile Include="Models\DTO\TarefasDTO.cs" />
     <Compile Include="Models\Entidades\Clientes.cs" />
     <Compile Include="Models\Entidades\Departamentos.cs" />
+    <Compile Include="Models\Entidades\Justificativas.cs" />
     <Compile Include="Models\Entidades\Log.cs" />
     <Compile Include="Models\Entidades\Projetos.cs" />
     <Compile Include="Models\Entidades\Projetos_Has_Usuarios.cs" />
@@ -642,6 +658,8 @@
     <Compile Include="Models\Entidades\Tarefas.cs" />
     <Compile Include="Models\Entidades\Usuarios.cs" />
     <Compile Include="Models\Evento.cs" />
+    <Compile Include="Models\GraficoDataSet.cs" />
+    <Compile Include="Models\GraficoGeralDataset.cs" />
     <Compile Include="Models\HorasDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\DepartamentoRepositorio.cs" />
@@ -675,6 +693,8 @@
     <Content Include="Views\Graficos\GraficoCusto.cshtml" />
     <Content Include="Views\Graficos\GraficoTarefas.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Graficos\HorasGeral.cshtml" />
+    <Content Include="scripts\qTip\jquery.qtip.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
