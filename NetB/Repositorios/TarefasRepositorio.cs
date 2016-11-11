@@ -2,6 +2,7 @@
 using NetB.Models.DTO;
 using NetB.Models.Entidades;
 using System;
+using System.Data.Entity.SqlServer;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
@@ -52,6 +53,14 @@ namespace NetB.Repositorios
                         valor_utilizado = x.join3.join2.join.tarefas.valor_utilizado,
                     }).ToListAsync();
             };
+        }
+
+        public async Task<List<Tarefas>> ListaTarefasProjeto(int idProjeto)
+        {
+            using (NetBContext netbContext = new NetBContext())
+            {
+                return await netbContext.Tarefas.Where(x => x.projetos_id == idProjeto).ToListAsync();
+            }
         }
 
         public async Task<List<GraficoDataSet>> BuscaHorasTarefas( int idProjeto)
@@ -193,7 +202,7 @@ namespace NetB.Repositorios
                         nome = x.join.tarefas.nome,
                         projeto = x.join.projetos.nome,
                         responsavel_id = x.responsavel.nome,
-                        inicio = x.join.tarefas.inicio.Value.ToString()?? "",
+                        inicio = x.join.tarefas.inicio.Value.ToString() ?? "",
                         previsao = x.join.tarefas.previsao.Value.ToString() ?? "",
                         conclusao = x.join.tarefas.conclusao.Value.ToString() ?? "",
                         observacoes = x.join.tarefas.observacoes
@@ -251,7 +260,7 @@ namespace NetB.Repositorios
             using (NetBContext netBContext = new NetBContext())
             {
                 var tarefa = await netBContext.Tarefas.Where(x => x.id == tarefaDTO.id).Select(x => x).FirstOrDefaultAsync();
-                tarefa.previsao = Convert.ToDateTime(tarefaDTO.previsao, CultureInfo.CurrentCulture);
+                tarefa.previsao = DateTime.ParseExact(tarefaDTO.previsao, "dd/MM/yyyy",CultureInfo.InvariantCulture);
                 tarefa.responsavel_id = tarefaDTO.responsavel_id;
                 var justificativa = new Justificativas
                 {

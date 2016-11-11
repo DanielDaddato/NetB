@@ -36,9 +36,9 @@ else
                     <td>@item.projeto</td>
                     <td>@item.descricao</td>
                     <td>@item.responsavel_id</td>
-                    <td>@Html.Raw(item.inicio.Value)</td>
-                    <td><span style="color:@item.statusCor">@item.previsao</span></td>
-                    <td>@item.conclusao</td>
+                    <td>@Html.Raw(item.inicio!= null ? item.inicio.Value.ToString("dd/MM/yyyy") : "")</td>
+                    <td><span style="color:@item.statusCor">@(item.previsao != null ? item.previsao.Value.ToString("dd/MM/yyyy") : "")</span></td>
+                    <td>@(item.conclusao != null ? item.conclusao.Value.ToString("dd/MM/yyyy") : "")</td>
                     <td>@item.observacoes</td>
                 </tr>
             }

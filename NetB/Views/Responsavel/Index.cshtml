@@ -1,0 +1,64 @@
+﻿@model IEnumerable<NetB.Models.Entidades.Responsavel>
+@{
+    Layout = null;
+    ViewBag.title = "Responsaveis";
+}
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Celular</th>
+        <th>Data Cadastro</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.nome</td>
+            <td>@item.email</td>
+            <td>@item.telefone</td>
+            <td>@item.celular</td>
+            <td>@item.data_cadastro.Date.ToString("dd/MM/yyyy")</td>
+            <td>
+                @Html.Raw(item.status ? "Ativo" : "Inativo")
+            </td>
+            <td>
+                <a href="javascript:void(0);" class="btn btn-warning" onclick="EditarResponsavelModal(@item.id);">Editar</a>
+                <a href="javascript:void(0);" class="btn btn-danger" onclick="DeletaResponsavel(@item.id)">Deletar</a>
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<p>
+    <a href="javascript:void(0);" class="btn btn-primary" onclick="NovoResponsavelModal();">Adicionar</a>
+</p>
+
+<div class="modal fade" id="basic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h3 id="titulo" class="modal-title">Responsável</h3>
+            </div>
+            <div class="modal-body" style="height: 400px">
+                <input type="hidden" id="numero" class="form-control" />
+                <label>Nome:</label>
+                <input type="text" class="form-control" id="nome" />
+                <label>E-mail:</label>
+                <input type="email" class="form-control" id="email" />
+                <label>Telefone:</label>
+                <input type="tel" class="form-control" id="telefone" />
+                <label>Celular:</label>
+                <input type="tel" class="form-control" id="celular" />
+                <p><input type="submit" onclick="GravaResponsavel();" class="btn btn-primary" value="Atualizar" /></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

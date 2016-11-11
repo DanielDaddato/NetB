@@ -1,0 +1,53 @@
+﻿@model IEnumerable<NetB.Models.Entidades.Tarefas>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<script type="text/javascript">
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+</script>
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Responsavel</th>
+        <th>Previsão</th>
+        <th>Observações</th>
+        <th>Dias Projetados</th>
+        <th>Custo Projetado</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.nome
+        </td>
+        <td>
+            @item.descricao
+        </td>
+        <td><select id="responsavel">
+                <option value="0">Selecione</option>
+                @foreach (var responsavel in ViewBag.resposavel)
+                {
+                    <option value="@responsavel.id">@responsavel.nome</option>
+                }
+            </select></td>
+        <td><p><input type="text" id="datepicker" class="ui-datepicker" value="@item.previsao" /></p></td>
+        <td>@item.observacoes</td>
+        <td><input type="text" value="@item.dias_estimados" /></td>
+        <td><input type="text" value="@item.valor_estimado" /></td>
+        <td>@item.status</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

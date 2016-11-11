@@ -51,7 +51,8 @@ namespace NetB.Controllers
 
         public async Task<ActionResult> HorasGeral()
         {
-            return View();
+            var projetos = await new ProjetosRepositorio().BuscaProjetos();
+            return View(projetos);
         }
 
         public async Task<JsonResult> BuscaHorasGeral()

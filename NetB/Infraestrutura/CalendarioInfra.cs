@@ -49,7 +49,7 @@ namespace NetB.Infraestrutura
 
         public string retornaStatus(DateTime previsao)
         {
-            if (previsao.Date == DateTime.Now.Date)
+            if (DateTime.Now.Date <= previsao.Date  && previsao.Date >= DateTime.Now.AddDays(-7))
             {
                 return "Yellow";
             }
@@ -75,7 +75,7 @@ namespace NetB.Infraestrutura
 
         private async Task EnviaEmailJustificativa(TarefaCalendarioDTO tarefaDTO)
         {
-            var responsavel = await new ResponsavelRepositorio().BuscaEmailResponsaveis(tarefaDTO.id);
+            var responsavel = await new ResponsavelRepositorio().BuscaEmailResponsaveis(tarefaDTO.responsavel_id);
             var lstEmailUsuarios = await new UsuariosRepositorio().BuscaUsuarioTarefa(tarefaDTO.id);
             var assunto = string.Format("Data de Previsão Alterada - {0} - {1} ", tarefaDTO.nome, tarefaDTO.projeto);
             var corpo = string.Empty;

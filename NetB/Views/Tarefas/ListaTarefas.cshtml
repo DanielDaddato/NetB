@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = null;
+}
+<div>
+    <select id="select" class="form-control" onchange="BuscaListaTarefas();">
+        <option value="0">Selecione</option>
+        @foreach (var item in Model)
+        {
+            <option value="@item.id">@item.nome</option>
+        }
+    </select>
+    <div id="tarefas">
+
+    </div>
+
+
+</div>

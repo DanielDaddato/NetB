@@ -18,7 +18,7 @@
         <tr>
             <td>@item.nome</td>
             <td>@item.email</td>
-            <td>@item.data_cadastro.Date</td>
+            <td>@item.data_cadastro.Date.ToString("dd/MM/yyyy")</td>
             @foreach (var d in ViewBag.Departamento)
             {
                 if (d.id == item.departamento_id)
@@ -73,36 +73,3 @@
 <p>
     <a href="javascript:void(0);" class="btn btn-primary" onclick="NovoUsuarioModal();">Adicionar</a>
 </p>
-
-<div class="modal fade" id="basic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h3 id="titulo" class="modal-title">Usuarios</h3>
-            </div>
-            <div class="modal-body" style="height: 400px">
-                <input type="hidden" id="numero" />
-                <label>Nome:</label>
-                <input type="text" id="nome" />
-                <label>Email:</label>
-                <input type="email" id="email" />
-                <label>Senha:</label>
-                <input type="password" id="senha" />
-                <label>Departamento</label>
-                <p>
-                    <select id="departamento">
-                        @foreach (var item in ViewBag.Departamento)
-                        {
-                            <option value="@item.id">@item.nome</option>
-                        }
-                    </select>
-                </p>
-                <p><input type="submit" onclick="AtualizaUsuario();" class="btn btn-primary" value="Atualizar" /></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>

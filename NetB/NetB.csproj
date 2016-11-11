@@ -631,6 +631,7 @@
     <Compile Include="Controllers\GraficosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ResponsavelController.cs" />
     <Compile Include="Controllers\TarefasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -642,6 +643,7 @@
     <Compile Include="Infraestrutura\GraficosInfra.cs" />
     <Compile Include="Infraestrutura\LoginInfra.cs" />
     <Compile Include="Infraestrutura\TarefasInfra.cs" />
+    <Compile Include="Models\DTO\GraficoGeralDTO.cs" />
     <Compile Include="Models\DTO\LoginDTO.cs" />
     <Compile Include="Models\DTO\TarefaCalendarioDTO.cs" />
     <Compile Include="Models\DTO\TarefasAgendamentoDTO.cs" />
@@ -695,6 +697,9 @@
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Graficos\HorasGeral.cshtml" />
     <Content Include="scripts\qTip\jquery.qtip.min.js.map" />
+    <Content Include="Views\Responsavel\Index.cshtml" />
+    <Content Include="Views\Tarefas\ListaTarefas.cshtml" />
+    <Content Include="Views\Tarefas\BuscaListaTarefas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

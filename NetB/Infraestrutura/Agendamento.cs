@@ -13,7 +13,7 @@ namespace NetB.Infraestrutura
         {
             try
             {
-                var horaExecução = "14:40:00";
+                var horaExecução = "08:00:00";
                 var tempo = horaExecução.Split(new char[1] { ':' });
 
                 var dataAtual = DateTime.Now;
@@ -50,7 +50,7 @@ namespace NetB.Infraestrutura
                var assunto = string.Empty;
                var corpo = string.Empty;
                x.lstEmailUsuarios = await new UsuariosRepositorio().BuscaUsuarioTarefa(x.id);
-               if(DateTime.Now >= x.previsao.Value.AddDays(- 7) && DateTime.Now <= x.previsao )
+               if(DateTime.Now >= x.previsao.Value.AddDays(- 7) && DateTime.Now <= x.previsao)
                {
                    assunto = string.Format("Tarefa Próxima da Data Limite - {0} - {1} ", x.nome, x.projeto);
                    corpo = new StringBuilder().Append("ATENÇÃO: Tarefa próxima da data limite!")

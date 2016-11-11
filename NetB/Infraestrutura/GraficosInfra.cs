@@ -1,4 +1,5 @@
 ﻿using NetB.Models;
+using NetB.Models.DTO;
 using NetB.Models.Entidades;
 using NetB.Repositorios;
 using System;
@@ -69,23 +70,26 @@ namespace NetB.Infraestrutura
             return contagemTarefas;
         }
 
-        public async Task<List<GraficoGeralDataset>> BuscaHorasGeral()
+        public async Task<GraficoGeralDTO> BuscaHorasGeral()
         {
             var listaDataset = new List<GraficoGeralDataset>();
             var projetos = await new ProjetosRepositorio().BuscaProjetos();
             List<List<Tarefas>> projetoTarefas = new List<List<Tarefas>>();
             var tarefas = await new TarefasRepositorio().BuscarTodasTarefasOrdenadoPorPrevisao();
-
+            var listaProjetos = new List<string>();
             foreach (var item in projetos)
             {
+                listaProjetos.Add(item.nome);
                 projetoTarefas.Add(tarefas.Where(x => x.projetos_id == item.id).OrderBy(x => x.previsao).ToList());
             }
            
             for (int i = 0; i <= 17; i++)
             {
                 var graficoGeralDataset = new GraficoGeralDataset();
+                graficoGeralDataset.Nome = projetoTarefas[0][i].nome;
                 foreach (var item in projetoTarefas)
-                {                 
+                {
+                    
                     if (item.Count > i)
                     {
                         graficoGeralDataset.Estimado.Add(item[i].dias_estimados);
@@ -97,10 +101,12 @@ namespace NetB.Infraestrutura
                         graficoGeralDataset.Realizado.Add(0);
                     }
                 }
+                
                 graficoGeralDataset.Cor = listaCores[i];
                 listaDataset.Add(graficoGeralDataset);
             }
-            return listaDataset;
+
+            return new GraficoGeralDTO { Projetos = listaProjetos, ListaDataset = listaDataset };
         }
     }
 }

@@ -26,7 +26,7 @@ namespace NetB.Infraestrutura
                 {
                     item.statusCor = "Red";
                 }
-                else if (item.Previsao.Value >= DateTime.Now.AddDays(-5) && item.Previsao.Value <= DateTime.Now)
+                else if (DateTime.Now >= item.Previsao.Value.AddDays(-5) && DateTime.Now  <= item.Previsao.Value)
                 {
                     item.statusCor = "Yellow";
                 }

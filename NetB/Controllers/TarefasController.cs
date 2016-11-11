@@ -31,5 +31,17 @@ namespace NetB.Controllers
             var tarefas = await  new TarefasRepositorio().TarefasPorProjeto(idProjeto);
             return Json(tarefas, JsonRequestBehavior.AllowGet);
         }
+
+        public async Task<ActionResult> ListaTarefas()
+        {
+            var projetos = await new ProjetosRepositorio().BuscaProjetos();
+            return View(projetos);
+        }
+
+        public async Task<ActionResult> BuscaListaTarefas(int IdProjeto)
+        {
+            var tarefas = await new TarefasRepositorio().ListaTarefasProjeto(IdProjeto);
+            return View(tarefas);
+        }
     }
 }

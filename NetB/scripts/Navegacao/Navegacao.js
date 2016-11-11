@@ -93,6 +93,23 @@ function NavegacaoUsuariosCallback(data) {
     $('.container').html(data);
 }
 
+function NavegacaoResponsaveis() {
+    updatePanelGet('../Responsavel/Index', NavegacaoResponsaveisCallback);
+}
+
+function NavegacaoResponsaveisCallback(data) {
+    $('.container').html(data);
+}
+
+function NavegacaoListaTarefas() {
+    updatePanelGet('../Tarefas/ListaTarefas', NavegacaoListaTarefasCallback);
+}
+
+function NavegacaoListaTarefasCallback(data) {
+    $('.container').html(data);
+}
+
+
 
 function BuscaEventoModal(data) {
     updatePanelGet('../Calendario/BuscaTarefaDetalhes?id='+data, BuscaEventoModalCallback);
@@ -136,15 +153,94 @@ function GravaUsuario() {
     data.senha = $('#senha').val();
     data.departamento_id = $('#departamento').val();
     updatePanelPost('../Usuarios/Gravar', data, GravaUsuarioCallback);
+    $('#basic').modal("hide");
 }
 
 function GravaUsuarioCallback(data) {
-    NavegacaoUsuarios();
+    if (data != 0) {
+        NavegacaoUsuarios();
+        ToastNotification("success", "", "Usuario registrado com sucesso!");
+
+    }
+    else {
+        ToastNotification("error", "", "Erro ao registrar Usuario!");
+    }
 }
 
 function DeletaUsuario(data) {
-    updatePanelGet('../Usuarios/Deletar?id=' + data, EditarUsuarioModalCallback);
+    updatePanelGet('../Usuarios/Deletar?id=' + data, DeletaUsuarioCallback);
 }
+
+function DeletaUsuarioCallback(data) {  
+    if (data != 0) {
+        NavegacaoUsuarios();
+        ToastNotification("success", "", "Usuario deletado com sucesso!");
+
+    }
+    else {
+        ToastNotification("error", "", "Erro ao deletar Usuario!");
+    }
+}
+
+function NovoResponsavelModal() {
+    $('#numero').val(null);
+    $('#nome').val('');
+    $('#email').val('');
+    $('#telefone').val('');
+    $('#celular').val('');
+    $('#basic').modal('show');
+}
+
+function EditarResponsavelModal(data) {
+    updatePanelGet('../Responsavel/Editar?id=' + data, EditarUsuarioModalCallback);
+}
+function EditarResponsavelModalCallback(data) {
+    $('#numero').val(data.id);
+    $('#nome').val(data.nome);
+    $('#email').val(data.email);
+    $('#telefone').val(data.telefone);
+    $('#celular').val(data.celular);
+    $('#basic').modal('show');
+}
+
+function DeletaResponsavel(data) {
+    updatePanelGet('../Responsavel/Deletar?id=' + data, DeletaResponsavelCallback);
+}
+
+function DeletaResponsavelCallback(data) {
+    if (data != 0) {
+        NavegacaoResponsaveis();
+        ToastNotification("success", "", "Responsavel Deletado com Sucesso!");
+
+    }
+    else {
+        ToastNotification("error", "", "Erro ao deletar Responsavel!");
+    }
+}
+
+function GravaResponsavel() {
+    var data = new Object();
+    data.id = $('#numero').val();
+    data.nome = $('#nome').val();
+    data.email = $('#email').val();
+    data.telefone = $('#telefone').val();
+    data.celular = $('#celular').val();
+    updatePanelPost('../Responsavel/Gravar', data, GravaResponsavelCallback);
+    $('#basic').modal("hide");
+}
+
+function GravaResponsavelCallback(data) {
+    if (data != 0) {
+        NavegacaoResponsaveis();
+        ToastNotification("success", "", "Responsavel registrado com sucesso!");
+
+    }
+    else {
+        ToastNotification("error", "", "Erro ao registrar Resonsavel!");
+    }
+    
+}
+
 
 function AtualizaTarefa() {
     var tarefa = new Object;
@@ -158,11 +254,11 @@ function AtualizaTarefa() {
 function AtualizaTarefaCallback(data) {
     if (data != 0) {
         NavegacaoCalendario();        
-        ToastNotification("success", "", "Data alterada com sucesso!");
+        ToastNotification("success", "", "Tarefa alterada com sucesso!");
         
     }
     else {
-        ToastNotification("error", "", "Erro ao alterar previsão!");
+        ToastNotification("error", "", "Erro ao alterar Tarefa!");
     }
 }
 
@@ -175,6 +271,7 @@ function BuscaTarefasCallback(data) {
     $("#tabelaBody").empty();
     var container = $("#tabelaBody");
     data.forEach(function (item) {
+        var inicio = new Date(item.inicio);
         var previsao = new Date(item.previsao);
         var myDate = new Date;
         if (item.conclusao !== "") {
@@ -194,7 +291,7 @@ function BuscaTarefasCallback(data) {
             '<td>' + item.nome + '</td>' +
             '<td>' + item.responsavel_id + '</td>' +
             '<td>' + item.descricao + '</td>' +
-            '<td>' + item.inicio + '</td>' +
+            '<td>' + inicio.toLocaleDateString() + '</td>' +
             '<td><span style="color:' + item.statusCor + '">' + previsao.toLocaleDateString() + '</span></td>' +
             '<td>' + item.conclusao + '</td>' +
             '<td>' + item.observacoes + '</td>' +
@@ -343,7 +440,7 @@ function BuscaDadosHorasGeral() {
 
 function BuscaDadosHorasGeralCallback(data) {
     var dados = new Array();
-    data.forEach(function (item) {
+    data.ListaDataset.forEach(function (item) {
         dados.push(
             {
                 label: item.Nome,
@@ -435,7 +532,7 @@ function BuscaDadosHorasGeralCallback(data) {
     });
 
     var dataGraf = {
-        labels: ["Projeto 1","Projeto 2"],
+        labels: data.Projetos,
         datasets: dados
     };
 
@@ -454,5 +551,14 @@ function BuscaDadosHorasGeralCallback(data) {
             }
         }
     });
+}
+
+function BuscaListaTarefas() {
+    var projeto = $('#select').val();
+    updatePanelGet("../Tarefas/BuscaListaTarefas?idProjeto=" + projeto, BuscaListaTarefasCallback, true, true);
+}
+
+function BuscaListaTarefasCallback(data) {
+    $('tarefas').html(data);
 }
 

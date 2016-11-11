@@ -39,10 +39,10 @@ else
                                         <tr>
                                             <td> @tarefas.Tarefa </td>
                                             <td> @tarefas.Projeto </td>
-                                            <td>@tarefas.Inicio</td>
-                                            <td><span style="color:@tarefas.statusCor">@tarefas.Previsao</span></td>
-                                            <td>@tarefas.Conclusao</td>
-                                            <td> @tarefas.Observacoes </td>
+                                            <td>@(tarefas.Inicio != null ? tarefas.Inicio.Value.ToString("dd/MM/yyyy") : "")</td>
+                                            <td><span style="color:@tarefas.statusCor">@(tarefas.Previsao != null ? tarefas.Previsao.Value.ToString("dd/MM/yyyy"): "")</span></td>
+                                            <td>@(@tarefas.Conclusao != null ? @tarefas.Conclusao.Value.ToString("dd/MM/yyyy") : "")</td>
+                                            <td>@tarefas.Observacoes </td>
                                         </tr>
                                     }
                                 </tbody>
