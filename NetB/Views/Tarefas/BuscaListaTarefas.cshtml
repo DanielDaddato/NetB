@@ -1,12 +1,19 @@
 ﻿@model IEnumerable<NetB.Models.Entidades.Tarefas>
+@using System.Web.Script.Serialization;
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{
+    Layout = null;
+    ViewBag.title = " Lista de Tarefas";
+}
+<style type="text/css">
+    .ui-datepicker {
+        background: #fff;
+    }
+</style>
 
 <script type="text/javascript">
     $(function () {
-        $("#datepicker").datepicker();
+        $(".ui-datepicker").datepicker();
     });
 </script>
 <table class="table">
@@ -21,33 +28,69 @@
         <th>Status</th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @item.nome
-        </td>
-        <td>
-            @item.descricao
-        </td>
-        <td><select id="responsavel">
-                <option value="0">Selecione</option>
-                @foreach (var responsavel in ViewBag.resposavel)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.nome
+            </td>
+            <td>
+                @item.descricao
+            </td>
+            <td>
+                @foreach (var responsavel in ViewBag.responsavel)
                 {
-                    <option value="@responsavel.id">@responsavel.nome</option>
+                    if (responsavel.id == item.responsavel_id)
+                    {
+                        @responsavel.nome;
+                    }
                 }
-            </select></td>
-        <td><p><input type="text" id="datepicker" class="ui-datepicker" value="@item.previsao" /></p></td>
-        <td>@item.observacoes</td>
-        <td><input type="text" value="@item.dias_estimados" /></td>
-        <td><input type="text" value="@item.valor_estimado" /></td>
-        <td>@item.status</td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+            </td>
+            <td>@(item.previsao != null ? item.previsao.Value.ToString("dd/MM/yyyy") : "")</td>
+            <td>@item.observacoes</td>
+            <td>@item.dias_estimados</td>
+            <td>@item.valor_estimado</td>
+            <td>@item.status</td>
+            <td><a href="javascript:void(0);" onclick="BuscaTarefaModal(@item.id);" class="btn btn-warning">Atualizar</a></td>
+        </tr>
+    }
 
 </table>
+<p>
+
+</p>
+<div class="modal fade" id="basic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h3 id="titulo" class="modal-title"></h3>
+            </div>
+            <div class="modal-body" style="height: 400px">
+                <input type="hidden" id="numero" />
+                <p id="descricao"></p>
+                <p id="projeto"></p>
+                <label>Responsavel:</label>
+                <p>
+                    <select id="responsavel">
+                        @foreach (var item in ViewBag.responsavel)
+                        {
+                            <option value="@item.id">@item.nome</option>
+                        }
+                    </select>
+                </p>
+                <label>Data de Previsão:</label>
+                <p><input type="text" id="datepicker" class="ui-datepicker" /></p>
+                <label>Dias Estimados:</label>
+                <p><input type="number" id="diasEstimados" /></p>
+                <label>Custo Estimado</label>
+                <p><input type="number" id="custoEstimado" /></p>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" onclick="GravarTarefa();" class="btn btn-primary" value="Gravar" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -47,11 +47,12 @@
                 <input id="login" placeholder="Email" type="text" class="input-sm center-block " />
                 <input id="senha" placeholder="Senha" type="password" class="input-sm center-block" />
                 <input type="button"class="center-block btn btn-primary" value="Entrar" onclick="LoginIndex();" />
+                <div id="erro" class="alert alert-danger" style="display:none" role="alert"> Login ou Senha incorreto, por favor tente Novamente!</div>
             </div>
         </div>
     </div>
     <footer class="nav navbar-inverse navbar-fixed-bottom panel-footer">
-        <p>&copy; @DateTime.Now.ToString() - Net.B 2016</p>
+        <p>&copy; @DateTime.Now.ToShortDateString() - Net.B 2016</p>
     </footer>
 </body>
 </html>

@@ -11,7 +11,7 @@ namespace NetB.Models.Entidades
     {
         public int id { get; set; }
         public int usuarios_id { get; set; }
-        public DateTime login { get; set; }
-        public DateTime logout { get; set; }
+        public DateTime? login { get; set; }
+        public DateTime? logout { get; set; }
     }
 }

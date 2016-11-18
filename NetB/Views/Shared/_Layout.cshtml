@@ -1,6 +1,8 @@
-﻿    <div class="nav navbar-inverse">
+﻿@using NetB.Models.Entidades;    
+<div class="nav navbar-inverse">
         <img src="~/Content/images/Netb/netb.jpg" style="height:75px; width:75px;" class="img-rounded navbar-brand" />
         <a class="navbar-brand" style="font-size:50px; margin-top: 14px;" href="#">Net.B</a>
+        @Html.ActionLink("Sair","Index","Login",null,new { @class = "btn btn-link pull-right" } )
     </div>
     <div class="row panel">
         <div class="nav navbar-left col-xs-2" style="font: bold 15px verdana; color:white; background-color:#222222;">

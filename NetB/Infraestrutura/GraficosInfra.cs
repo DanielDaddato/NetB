@@ -86,17 +86,19 @@ namespace NetB.Infraestrutura
             for (int i = 0; i <= 17; i++)
             {
                 var graficoGeralDataset = new GraficoGeralDataset();
-                graficoGeralDataset.Nome = projetoTarefas[0][i].nome;
+                
                 foreach (var item in projetoTarefas)
                 {
                     
                     if (item.Count > i)
                     {
+                        graficoGeralDataset.Nome = item[i].nome ?? "";
                         graficoGeralDataset.Estimado.Add(item[i].dias_estimados);
                         graficoGeralDataset.Realizado.Add(item[i].dias_trabalhados);
                     }
                     else
                     {
+                        graficoGeralDataset.Nome = "";
                         graficoGeralDataset.Estimado.Add(0);
                         graficoGeralDataset.Realizado.Add(0);
                     }

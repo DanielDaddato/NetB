@@ -26,13 +26,17 @@ namespace NetB.Controllers
                         {
                             item.statusCor = "Green";
                         }
+                        else if (item.previsao == null)
+                        {
+                            continue;
+                        }
                         else if (item.previsao.Value < DateTime.Now)
                         {
                             item.statusCor = "Red";
                         }
-                        else if (item.previsao.Value >= DateTime.Now.AddDays(-5) && item.previsao.Value <= DateTime.Now)
+                        else if (DateTime.Now >= item.previsao.Value.AddDays(-7) && DateTime.Now <= item.previsao.Value)
                         {
-                            item.statusCor = "Yellow";
+                            item.statusCor = "Orange";
                         }
                         else
                         {

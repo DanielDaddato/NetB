@@ -55,6 +55,29 @@ namespace NetB.Repositorios
             };
         }
 
+        public async Task<Tarefas> BuscaTarefa(int id)
+        {
+            using (NetBContext netbContext = new NetBContext())
+            {
+                return await netbContext.Tarefas.Where(x => x.id == id).FirstOrDefaultAsync();
+            }
+        }
+
+        public async Task<int> AtualizaTarefas(List<Tarefas> listaTarefas)
+        {
+            using (NetBContext netbContext = new NetBContext())
+            {
+                listaTarefas.ForEach(async x => 
+                {
+                    var tarefa = await netbContext.Tarefas.Where(t => t.id == x.id).FirstOrDefaultAsync();
+                    tarefa.previsao = x.previsao;
+                    tarefa.dias_estimados = x.dias_estimados;
+                    tarefa.valor_estimado = x.valor_estimado; 
+                });
+                return await netbContext.SaveChangesAsync();
+            }
+        }
+
         public async Task<List<Tarefas>> ListaTarefasProjeto(int idProjeto)
         {
             using (NetBContext netbContext = new NetBContext())
@@ -306,6 +329,19 @@ namespace NetB.Repositorios
                         responsavel_email = x.responsavel.email,
                     }).ToListAsync();
             };
+        }
+        public async Task<int> GravaTarefa(Tarefas tarefa)
+        {
+            using (NetBContext netbContext = new NetBContext())
+            {
+                    var _tarefa = await netbContext.Tarefas.Where(x => x.id == tarefa.id).FirstOrDefaultAsync();
+                    _tarefa.previsao = DateTime.Parse(tarefa.previsao.Value.ToString("dd/MM/yyyy"));
+                    _tarefa.responsavel_id = tarefa.responsavel_id;
+                    _tarefa.valor_estimado = tarefa.valor_estimado;
+                    _tarefa.dias_estimados = tarefa.dias_estimados;
+                    return await netbContext.SaveChangesAsync();
+            }
+
         }
 
     }

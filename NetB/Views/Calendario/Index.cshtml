@@ -3,8 +3,13 @@
 @model IEnumerable<Responsavel>
 @{
     Layout = null;
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Calendario";
 }
+<style type="text/css">
+    .ui-datepicker {
+        background: #fff;
+    }
+</style>
 <script type="text/javascript">
     $(function () {
         $("#datepicker").datepicker();

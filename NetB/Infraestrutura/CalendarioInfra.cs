@@ -18,18 +18,21 @@ namespace NetB.Infraestrutura
             var eventos = new List<Evento>();
             tarefas.ForEach(x =>
                 {
-                    eventos.Add(new Evento
+                    if (x.end != null)
                     {
-                        id = x.id,
-                        title = x.title,
-                        projeto = x.projeto,
-                        responsavel = x.responsavel,
-                        start = x.start.Value.ToString("yyyy-MM-dd"),
-                        end = x.end.Value.ToString("yyyy-MM-dd 18:00:00"),
-                        descricao = x.descricao,
-                        color = retornaStatus(x.end.Value),
-                        textColor = "black"                        
-                });
+                        eventos.Add(new Evento
+                        {
+                            id = x.id,
+                            title = x.title,
+                            projeto = x.projeto,
+                            responsavel = x.responsavel,
+                            start = x.start != null ? x.start.Value.ToString("yyyy-MM-dd") : x.end != null ? x.end.Value.ToString("yyyy-MM-dd") : "",
+                            end = x.end != null ? x.end.Value.ToString("yyyy-MM-dd 18:00:00") : "",
+                            descricao = x.descricao,
+                            color = retornaStatus(x.end),
+                            textColor = "black"
+                        });
+                    }
 
             });
 
@@ -47,13 +50,17 @@ namespace NetB.Infraestrutura
            return eventos;
         }
 
-        public string retornaStatus(DateTime previsao)
+        public string retornaStatus(DateTime? previsao)
         {
-            if (DateTime.Now.Date <= previsao.Date  && previsao.Date >= DateTime.Now.AddDays(-7))
+            if (previsao == null)
+            {
+                return "Orange";
+            }
+            else if (DateTime.Now.Date <= previsao.Value.Date && DateTime.Now >= previsao.Value.Date.AddDays(-7))
             {
                 return "Yellow";
             }
-            else if (previsao.Date < DateTime.Now.Date)
+            else if (previsao.Value.Date < DateTime.Now.Date)
             {
                 return "Red";
             }

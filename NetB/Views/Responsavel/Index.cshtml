@@ -3,6 +3,7 @@
     Layout = null;
     ViewBag.title = "Responsaveis";
 }
+<h2>RESPONSAVEIS</h2>
 <table class="table">
     <tr>
         <th>Nome</th>
@@ -54,10 +55,11 @@
                 <input type="tel" class="form-control" id="telefone" />
                 <label>Celular:</label>
                 <input type="tel" class="form-control" id="celular" />
-                <p><input type="submit" onclick="GravaResponsavel();" class="btn btn-primary" value="Atualizar" /></p>
+                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" onclick="GravaResponsavel();" class="btn btn-primary" value="Atualizar" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>

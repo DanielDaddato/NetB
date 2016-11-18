@@ -16,31 +16,46 @@ namespace NetB.Controllers
         // GET: Login
         public async Task<ActionResult> Index()
         {
-                return View();           
+            return View();
         }
 
         [HttpPost]
-        public async Task<ActionResult> Index(LoginDTO login)
-        { 
+        public async Task<JsonResult> Index(LoginDTO login)
+        {
+            var retorno = false;
             if (ModelState.IsValid)
             {
-                try
+                var usuario = await new LoginInfra().ValidaLogin(login);
+                if (usuario == null)
+                    retorno = false;
+                else
                 {
-                    var usuario = await new LoginInfra().ValidaLogin(login);
                     if (usuario.senha == login.Senha)
                     {
                         Session["usuario"] = usuario;
-                        return RedirectToAction("Index", "Home");
+                        Session["LogId"] = await new LogRepositorio().RegistrarLogin(usuario.id);
+                        retorno = true;
                     }
                     else
-                        ViewBag.Error = "Senha não confere!";
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex);
+                        retorno = false;
                 }
             }
-            return View(login);
+            return Json(retorno, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<RedirectToRouteResult> Logout()
+        {
+            var logId = (int)Session["LogId"];            
+            var retorno = await new LogRepositorio().RegistrarLogout(logId);
+            Session["LogId"] = null;
+            Session["usuario"] = null;
+
+            return RedirectToRoute("Default");
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
         }
     }
 }

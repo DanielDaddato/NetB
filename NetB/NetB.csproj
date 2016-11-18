@@ -665,6 +665,7 @@
     <Compile Include="Models\HorasDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\DepartamentoRepositorio.cs" />
+    <Compile Include="Repositorios\LogRepositorio.cs" />
     <Compile Include="Repositorios\NetBContext.cs" />
     <Compile Include="Repositorios\ProjetosRepositorio.cs" />
     <Compile Include="Repositorios\ResponsavelRepositorio.cs" />
@@ -690,7 +691,6 @@
     <Content Include="scripts\jquery-3.1.0.min.map" />
     <Content Include="Views\Tarefas\TarefasPorUsuarios.cshtml" />
     <Content Include="Views\Tarefas\TarefasPorProjeto.cshtml" />
-    <Content Include="Views\Calendario\Index - Copy.cshtml" />
     <Content Include="Views\Graficos\GraficoHoras.cshtml" />
     <Content Include="Views\Graficos\GraficoCusto.cshtml" />
     <Content Include="Views\Graficos\GraficoTarefas.cshtml" />

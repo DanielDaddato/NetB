@@ -13,6 +13,7 @@ namespace NetB.Models.Entidades
         public string pm_tarefa { get; set; }
         public int projetos_id { get; set; }
         public int responsavel_id { get; set; }
+        public int? seq_tarefa { get; set; }
         public string nome { get; set; }
         public string descricao { get; set; }
         public DateTime? inicio { get; set; }

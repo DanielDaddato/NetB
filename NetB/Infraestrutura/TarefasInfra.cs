@@ -22,13 +22,17 @@ namespace NetB.Infraestrutura
                 {
                     item.statusCor = "Green";
                 }
+                else if(item.Previsao == null)
+                {
+                    continue;
+                }
                 else if (item.Previsao.Value < DateTime.Now)
                 {
                     item.statusCor = "Red";
                 }
-                else if (DateTime.Now >= item.Previsao.Value.AddDays(-5) && DateTime.Now  <= item.Previsao.Value)
+                else if (DateTime.Now >= item.Previsao.Value.AddDays(-7) && DateTime.Now  <= item.Previsao.Value)
                 {
-                    item.statusCor = "Yellow";
+                    item.statusCor = "Orange";
                 }
                 else
                 {

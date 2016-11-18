@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
 using NetB.Infraestrutura;
 using NetB.Repositorios;
+using NetB.Models.Entidades;
+using Newtonsoft.Json;
+using System.Web.Script.Serialization;
+using System;
 
 namespace NetB.Controllers
 {
@@ -40,8 +40,21 @@ namespace NetB.Controllers
 
         public async Task<ActionResult> BuscaListaTarefas(int IdProjeto)
         {
+            ViewBag.responsavel = await new ResponsavelRepositorio().BuscaResponsaveis();
             var tarefas = await new TarefasRepositorio().ListaTarefasProjeto(IdProjeto);
             return View(tarefas);
+        }
+
+        public async Task<JsonResult> BuscaTarefa(int id)
+        {
+            var tarefa = await  new TarefasRepositorio().BuscaTarefa(id);
+            return Json(tarefa, JsonRequestBehavior.AllowGet);
+        }
+        [System.Web.Mvc.HttpPost]
+        public async Task<JsonResult> GravarTarefas(Tarefas tarefa)
+        {
+            var resultado = await new TarefasRepositorio().GravaTarefa(tarefa);
+            return Json(resultado, JsonRequestBehavior.AllowGet);
         }
     }
 }

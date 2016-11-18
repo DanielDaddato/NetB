@@ -3,8 +3,9 @@
 @model IEnumerable<Projetos>
 @{
     Layout = null;
+    ViewBag.title = "Tarefas por Projeto";
 }
-
+<h2>TAREFAS POR PROJETO</h2>
 <div>
     <select id="select" class="form-control" onchange="BuscaTarefas();">
         <option value="0">Selecione</option>

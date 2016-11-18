@@ -1,4 +1,5 @@
-﻿function HomeIndex() {
+﻿var myChart = null;
+function HomeIndex() {
     updatePanelGet('../Home/Index',HomeIndexCallback);
 }
 
@@ -14,7 +15,13 @@ function LoginIndex() {
 
 function LoginIndexCallBack(data)
 {
-    var container = $("body").html(data);
+    if (data == false) {
+        $('#erro').show();
+        ToastNotification("error", "", "Erro ao tentar entrar!");
+    }
+    else {
+        HomeIndex();
+    }
 }
 
 function NavegacaoMacro() {
@@ -157,7 +164,7 @@ function GravaUsuario() {
 }
 
 function GravaUsuarioCallback(data) {
-    if (data != 0) {
+    if (data !== 0) {
         NavegacaoUsuarios();
         ToastNotification("success", "", "Usuario registrado com sucesso!");
 
@@ -172,7 +179,7 @@ function DeletaUsuario(data) {
 }
 
 function DeletaUsuarioCallback(data) {  
-    if (data != 0) {
+    if (data !== 0) {
         NavegacaoUsuarios();
         ToastNotification("success", "", "Usuario deletado com sucesso!");
 
@@ -192,7 +199,7 @@ function NovoResponsavelModal() {
 }
 
 function EditarResponsavelModal(data) {
-    updatePanelGet('../Responsavel/Editar?id=' + data, EditarUsuarioModalCallback);
+    updatePanelGet('../Responsavel/Editar?id=' + data, EditarResponsavelModalCallback);
 }
 function EditarResponsavelModalCallback(data) {
     $('#numero').val(data.id);
@@ -208,7 +215,7 @@ function DeletaResponsavel(data) {
 }
 
 function DeletaResponsavelCallback(data) {
-    if (data != 0) {
+    if (data !== 0) {
         NavegacaoResponsaveis();
         ToastNotification("success", "", "Responsavel Deletado com Sucesso!");
 
@@ -230,7 +237,7 @@ function GravaResponsavel() {
 }
 
 function GravaResponsavelCallback(data) {
-    if (data != 0) {
+    if (data !== 0) {
         NavegacaoResponsaveis();
         ToastNotification("success", "", "Responsavel registrado com sucesso!");
 
@@ -252,7 +259,7 @@ function AtualizaTarefa() {
     $('#basic').modal("hide");
 }
 function AtualizaTarefaCallback(data) {
-    if (data != 0) {
+    if (data !== 0) {
         NavegacaoCalendario();        
         ToastNotification("success", "", "Tarefa alterada com sucesso!");
         
@@ -281,8 +288,8 @@ function BuscaTarefasCallback(data) {
         else if (previsao < myDate) {
             item.statusCor = "Red";
         }
-        else if (previsao >= myDate.setDate(myDate.getDate() - 7) && previsao <= myDate) {
-            item.statusCor = "Yellow";
+        else if (myDate >= (previsao.getDate() - 7) && myDate <= previsao) {
+            item.statusCor = "Orange";
         }
         else {
             item.statusCor = "Blue";
@@ -307,7 +314,9 @@ function BuscaHoras() {
 }
 
 function BuscaHorasCallback(data) {
-
+    if (myChart !== null) {
+        myChart.destroy();
+    }
     var ctx = $("#myChart");
     var dados = new Array();
     data.forEach(function (item) {
@@ -320,7 +329,7 @@ function BuscaHorasCallback(data) {
                 backgroundColor: item.Cor,
             });
     })
-    var myChart = new Chart(ctx, {
+    myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
             labels: ["Man-Days Projetado", "Man-Days Executados"],
@@ -351,7 +360,9 @@ function BuscaCusto() {
 }
 
 function BuscaCustoCallback(data) {
-
+    if (myChart !== null) {
+        myChart.destroy();
+    }
     var ctx = $("#myChart");
     var dados = new Array();
     data.forEach(function (item) {
@@ -364,7 +375,7 @@ function BuscaCustoCallback(data) {
                 backgroundColor: item.Cor,
             });
     })
-    var myChart = new Chart(ctx, {
+    myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
             labels: ["Custo Projetado", "Custo Real"],
@@ -395,10 +406,12 @@ function BuscaContagemTarefas() {
 }
 
 function BuscaContagemTarefasCallback(data) {
-    
+    if (myChart !== null) {
+        myChart.destroy();
+    }
     var ctx = $("#myChart");
     // For a pie chart
-    var myChart = new Chart(ctx, {
+    myChart = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: [
@@ -559,6 +572,58 @@ function BuscaListaTarefas() {
 }
 
 function BuscaListaTarefasCallback(data) {
-    $('tarefas').html(data);
+    $('#tarefas').html(data);
+}
+
+
+function BuscaTarefaModal(data) {
+    updatePanelGet('../Tarefas/BuscaTarefa?id=' + data, BuscaTarefaModalCallback, true, true);
+}
+function BuscaTarefaModalCallback(data) {
+    var previsao = new Date(data.previsao);
+    if (data.previsao === null) {
+        previsao = (Date.now());
+    }
+    $('#numero').val(data.id);
+    $('#titulo').html(data.nome);
+    $('#descricao').html("<span>Descrição: </span>" + data.descricao);
+    $('#projeto').html("<span>Projeto: </span>" + data.projeto);
+    $('#responsavel').val(data.responsavel_id);
+    $('#datepicker').datepicker('setDate', previsao);
+    $('#custoEstimado').val(data.valor_estimado);
+    $('#diasEstimados').val(data.dias_estimados);
+    $('#basic').modal('show');
+}
+
+function GravarTarefa(data) {
+
+    var tarefa = new Object;
+    tarefa.id = $('#numero').val();
+    tarefa.responsavel_id = $('#responsavel').val();
+    tarefa.previsao = $('#datepicker').val();
+    tarefa.dias_estimados = $('#diasEstimados').val();
+    tarefa.valor_estimado = $('#custoEstimado').val();
+    updatePanelPost('../Tarefas/GravarTarefas', tarefa, GravarTarefasCallback);
+    $('#basic').modal("hide");
+}
+
+function GravarTarefasCallback(data) {
+    if (data !== 0) {
+        NavegacaoListaTarefas();
+        ToastNotification("success", "", "Tarefa Registrada com Sucesso!");
+
+    }
+    else {
+        ToastNotification("error", "", "Erro ao registrar Tarefa!");
+    }
+}
+
+function Logout() {
+    updatePanelGet('../Login/Logout', LogoutCallback);
+}
+
+function LogoutCallback(data)
+{
+    updatePanelGetnoCallback('../Login/Index');
 }
 
