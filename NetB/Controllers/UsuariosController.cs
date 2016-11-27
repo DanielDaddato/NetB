@@ -47,5 +47,10 @@ namespace NetB.Controllers
             var retorno = await new UsuariosRepositorio().DeletarUsuario(id);
             return Json(retorno, JsonRequestBehavior.AllowGet);
         }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
+        }
     }
 }

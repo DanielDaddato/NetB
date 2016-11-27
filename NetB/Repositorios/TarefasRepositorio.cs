@@ -330,18 +330,18 @@ namespace NetB.Repositorios
                     }).ToListAsync();
             };
         }
-        public async Task<int> GravaTarefa(Tarefas tarefa)
+        public async Task<int> GravaTarefa(TarefaDTO tarefa)
         {
             using (NetBContext netbContext = new NetBContext())
             {
-                    var _tarefa = await netbContext.Tarefas.Where(x => x.id == tarefa.id).FirstOrDefaultAsync();
-                    _tarefa.previsao = DateTime.Parse(tarefa.previsao.Value.ToString("dd/MM/yyyy"));
-                    _tarefa.responsavel_id = tarefa.responsavel_id;
-                    _tarefa.valor_estimado = tarefa.valor_estimado;
-                    _tarefa.dias_estimados = tarefa.dias_estimados;
-                    return await netbContext.SaveChangesAsync();
+                var _tarefa = await netbContext.Tarefas.Where(x => x.id == tarefa.id).FirstOrDefaultAsync();
+                _tarefa.previsao = DateTime.ParseExact(tarefa.previsao,"dd/MM/yyyy",CultureInfo.InvariantCulture);
+                _tarefa.responsavel_id = tarefa.responsavel_id;
+                _tarefa.inicio = DateTime.ParseExact(tarefa.inicio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                _tarefa.valor_estimado = tarefa.valor_estimado;
+                _tarefa.dias_estimados = tarefa.dias_estimados;
+                return await netbContext.SaveChangesAsync();
             }
-
         }
 
     }

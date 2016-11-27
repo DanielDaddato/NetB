@@ -15,7 +15,7 @@ function LoginIndex() {
 
 function LoginIndexCallBack(data)
 {
-    if (data == false) {
+    if (data === false) {
         $('#erro').show();
         ToastNotification("error", "", "Erro ao tentar entrar!");
     }
@@ -580,26 +580,40 @@ function BuscaTarefaModal(data) {
     updatePanelGet('../Tarefas/BuscaTarefa?id=' + data, BuscaTarefaModalCallback, true, true);
 }
 function BuscaTarefaModalCallback(data) {
-    var previsao = new Date(data.previsao);
+    var previsao = null;
     if (data.previsao === null) {
         previsao = (Date.now());
+    }
+    else {
+        var dataPrevisao = data.previsao.replace('/Date(', '').replace(')/', '');
+        previsao = new Date(dataPrevisao);
+    }
+    var inicio = null; 
+    if (data.inicio === null) {
+        inicio = Date.now();
+    }
+    else {
+        var dataInicio = data.inicio.replace('/Date(', '').replace(')/', '');
+        inicio = new Date(dataInicio);
     }
     $('#numero').val(data.id);
     $('#titulo').html(data.nome);
     $('#descricao').html("<span>Descrição: </span>" + data.descricao);
     $('#projeto').html("<span>Projeto: </span>" + data.projeto);
     $('#responsavel').val(data.responsavel_id);
+    $('#datepicker_inicio').datepicker('setDate', inicio);
     $('#datepicker').datepicker('setDate', previsao);
     $('#custoEstimado').val(data.valor_estimado);
     $('#diasEstimados').val(data.dias_estimados);
     $('#basic').modal('show');
 }
 
-function GravarTarefa(data) {
+function GravarTarefa() {
 
     var tarefa = new Object;
     tarefa.id = $('#numero').val();
     tarefa.responsavel_id = $('#responsavel').val();
+    tarefa.inicio = $('#datepicker_inicio').val();
     tarefa.previsao = $('#datepicker').val();
     tarefa.dias_estimados = $('#diasEstimados').val();
     tarefa.valor_estimado = $('#custoEstimado').val();
@@ -609,7 +623,7 @@ function GravarTarefa(data) {
 
 function GravarTarefasCallback(data) {
     if (data !== 0) {
-        NavegacaoListaTarefas();
+        BuscaListaTarefas()
         ToastNotification("success", "", "Tarefa Registrada com Sucesso!");
 
     }

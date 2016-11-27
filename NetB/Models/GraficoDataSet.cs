@@ -9,8 +9,10 @@ namespace NetB.Models
     public class GraficoDataSet
     {
         public string Nome { get; set; }
-        public int Estimado { get; set; }
-        public int Real { get; set; }
+        public double Estimado { get; set; }
+        public double Real { get; set; }
         public string Cor { get; set; }
     }
 }
+
+

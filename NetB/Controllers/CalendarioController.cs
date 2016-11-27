@@ -47,5 +47,10 @@ namespace NetB.Controllers
                 return null;
             }
         }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
+        }
     }
 }

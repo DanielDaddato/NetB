@@ -22,8 +22,8 @@ namespace NetB.Models.Entidades
         public string observacoes { get; set; }
         public int dias_estimados { get; set; }
         public int dias_trabalhados { get; set; }
-        public int valor_estimado { get; set; }
-        public int valor_utilizado { get; set; }
+        public double valor_estimado { get; set; }
+        public double valor_utilizado { get; set; }
         public bool status { get; set; }
     }
 }

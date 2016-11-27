@@ -21,6 +21,7 @@
         <th>Nome</th>
         <th>Descrição</th>
         <th>Responsavel</th>
+        <th>Inicio</th>
         <th>Previsão</th>
         <th>Observações</th>
         <th>Dias Projetados</th>
@@ -46,6 +47,7 @@
                     }
                 }
             </td>
+            <td>@(item.inicio != null ? item.inicio.Value.ToString("dd/MM/yyyy") : "")</td>
             <td>@(item.previsao != null ? item.previsao.Value.ToString("dd/MM/yyyy") : "")</td>
             <td>@item.observacoes</td>
             <td>@item.dias_estimados</td>
@@ -69,7 +71,6 @@
             <div class="modal-body" style="height: 400px">
                 <input type="hidden" id="numero" />
                 <p id="descricao"></p>
-                <p id="projeto"></p>
                 <label>Responsavel:</label>
                 <p>
                     <select id="responsavel">
@@ -79,6 +80,8 @@
                         }
                     </select>
                 </p>
+                <label>Data de Inicio</label>
+                <p><input type="text" id="datepicker_inicio" class="ui-datepicker"></p>
                 <label>Data de Previsão:</label>
                 <p><input type="text" id="datepicker" class="ui-datepicker" /></p>
                 <label>Dias Estimados:</label>

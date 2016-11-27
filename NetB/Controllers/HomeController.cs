@@ -51,8 +51,12 @@ namespace NetB.Controllers
                 }            
             }
 
-            return RedirectToAction("Login", "Index");
+            return RedirectToAction("Index", "Login");
             
+        }
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
         }
     }
 }

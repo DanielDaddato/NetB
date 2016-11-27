@@ -8,6 +8,7 @@ using NetB.Models.Entidades;
 using Newtonsoft.Json;
 using System.Web.Script.Serialization;
 using System;
+using NetB.Models;
 
 namespace NetB.Controllers
 {
@@ -51,10 +52,15 @@ namespace NetB.Controllers
             return Json(tarefa, JsonRequestBehavior.AllowGet);
         }
         [System.Web.Mvc.HttpPost]
-        public async Task<JsonResult> GravarTarefas(Tarefas tarefa)
+        public async Task<JsonResult> GravarTarefas(TarefaDTO tarefa)
         {
             var resultado = await new TarefasRepositorio().GravaTarefa(tarefa);
             return Json(resultado, JsonRequestBehavior.AllowGet);
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
         }
     }
 }

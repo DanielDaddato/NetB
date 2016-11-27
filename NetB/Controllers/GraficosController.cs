@@ -57,16 +57,13 @@ namespace NetB.Controllers
 
         public async Task<JsonResult> BuscaHorasGeral()
         {
-            try
-            {
                 var retorno = await new GraficosInfra().BuscaHorasGeral();
                 return Json(retorno, JsonRequestBehavior.AllowGet);
-            }
-            catch(Exception ex)
-            {
-                ex.ToString();
-                return null;
-            }
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
         }
 
 

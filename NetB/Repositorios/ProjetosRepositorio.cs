@@ -12,7 +12,7 @@ namespace NetB.Repositorios
     public class ProjetosRepositorio
     {
         public async Task<IEnumerable<Projetos>> BuscaProjetos()
-        {
+        {          
             using (NetBContext netBContext = new NetBContext())
             {
                     return await netBContext.Projetos.ToListAsync();
