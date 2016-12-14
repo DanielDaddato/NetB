@@ -13,12 +13,12 @@ namespace NetB.Infraestrutura
         {
             try
             {
-                var horaExecução = "02:00:00";
+                var horaExecução = "22:46:00";
                 var tempo = horaExecução.Split(new char[1] { ':' });
 
                 var dataAtual = DateTime.Now;
                 var date = new DateTime(dataAtual.Year, dataAtual.Month, dataAtual.Day,
-                           int.Parse(tempo[0]), int.Parse(tempo[1]), int.Parse(tempo[2]));
+                           int.Parse(tempo[0]), int.Parse(tempo[1]), int.Parse(tempo[2]),DateTimeKind.Local);
                 TimeSpan espera;
                 if (date > dataAtual)
                     espera = date - dataAtual;
@@ -32,9 +32,9 @@ namespace NetB.Infraestrutura
                                 await NotificaUsuario();
                             });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                new Email().EnviarEmail("daniel.daddato@gmail.com ", new List<string>(), "Erro", ex.Message.ToString()).Wait();
             }
             finally
             {
@@ -83,7 +83,7 @@ namespace NetB.Infraestrutura
             }
             catch (Exception ex)
             {
-
+                new Email().EnviarEmail("daniel.daddato@gmail.com ", new List<string>(), "Erro", ex.Message.ToString()).Wait();
             }
             finally
             {

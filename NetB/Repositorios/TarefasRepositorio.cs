@@ -224,6 +224,7 @@ namespace NetB.Repositorios
                     {
                         nome = x.join.tarefas.nome,
                         projeto = x.join.projetos.nome,
+                        descricao = x.join.tarefas.descricao,
                         responsavel_id = x.responsavel.nome,
                         inicio = x.join.tarefas.inicio.Value.ToString() ?? "",
                         previsao = x.join.tarefas.previsao.Value.ToString() ?? "",
